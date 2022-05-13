@@ -1,0 +1,17 @@
+package rest.db;
+
+import java.sql.Connection;
+
+import rest.evaluacion.Vista;
+
+public class TestConexion {
+    
+    public static void main(String[] args) {
+        Connection con = Conexion.connect();
+        if( con != null){
+            System.out.println("Conexión exitosa");
+        }
+        Vista v = new Vista();
+    
+    }
+}

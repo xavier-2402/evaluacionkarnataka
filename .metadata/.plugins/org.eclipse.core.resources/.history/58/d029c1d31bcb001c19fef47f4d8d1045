@@ -1,0 +1,20 @@
+package karnataka.tests;
+
+import java.util.ArrayList;
+
+import karnataka.entidades.Empresa;
+import karnataka.servicio.EmpresaService;
+
+public class TestVariables {
+
+	
+	public static void main(String[] args) {
+		ArrayList<Empresa> empresas = EmpresaService.obtenerEmpresas(1, "2020", 1);
+		for ( Empresa e : empresas){
+			System.out.println(e);
+		}
+		
+		int lista[] = {1,4,6,7};
+		System.out.println(lista.toString());
+	}
+}

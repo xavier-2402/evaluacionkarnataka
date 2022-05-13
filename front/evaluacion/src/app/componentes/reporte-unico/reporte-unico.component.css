@@ -1,0 +1,25 @@
+p{
+    color: coral;
+    text-transform: capitalize;
+}
+
+.seleccion-reporte{
+    text-transform: capitalize;
+}
+table{
+    border: 1px solid #000;
+}
+
+th, td {
+    width: 25%;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #000;
+    border-spacing: 0;
+ }
+
+ .grafica-barras{
+    height: 400px;
+    width: 400px;
+
+ }

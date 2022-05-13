@@ -1,0 +1,23 @@
+package karnataka.servicio;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import karnataka.db.Conexion;
+import karnataka.entidades.Anio;
+
+public class AnioService {
+	public static ArrayList<Anio> obtenerAnios(){
+		String sql = "SELECT DISTINCT CON_PERIODO FROM REP_VENTA_DETAL_COL_PRUE_VW";
+		Connection con = Conexion.connect();
+		if(con != null){
+			try {
+				
+			} catch (SQLException e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+}

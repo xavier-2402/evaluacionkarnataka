@@ -1,0 +1,24 @@
+package karnataka.controlador;
+
+import java.util.ArrayList;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import karnataka.entidades.Vista;
+import karnataka.servicio.EvaluacionService;
+
+@Path("/reporte")
+public class EvaluacionController {
+	@Path("/fecha-empresa/{codEmpresa}/{mes}/{anio}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response buscarPorEmpresayFecha(@PathParam("codEmpresa") int codEmpresa, @PathParam("mes") int mes, @PathParam("anio")int anio){
+		ArrayList<Vista> lista = EvaluacionService.buscarPorEmpresayFecha(codEmpresa, anio, mes);
+		return Response.status(200).entity(lista).build();
+	}
+}

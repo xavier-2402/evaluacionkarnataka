@@ -1,0 +1,15 @@
+package rest.test;
+
+import rest.entidades.Vista;
+import rest.service.EvaluacionService;
+
+public class Busqueda {
+   public static void main(String[] args) {
+    EvaluacionService serv = new EvaluacionService();
+     ArrayList<Vista> lista = new ArrayList<Vista>();
+     lista = serv.buscarPorEmpresa(207);
+     for( Vista v: lista){
+  	   System.out.println(v.getAnio());
+     }
+   }
+}

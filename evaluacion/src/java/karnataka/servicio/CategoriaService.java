@@ -1,0 +1,48 @@
+package karnataka.servicio;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import karnataka.db.Conexion;
+import karnataka.entidades.Categoria;
+
+public class CategoriaService {
+	
+	public static ArrayList<Categoria> obtenerCategorias() {
+		String sql= "SELECT DISTINCT CON_COD_SUB_CATEGORIA_VEHICULO , CON_NOM_SUB_CATEGORIA_VEHICULO "
+				+ " FROM REP_VENTA_DETAL_COL_PRUE_VW ORDER BY CON_COD_SUB_CATEGORIA_VEHICULO ";
+		Connection con = Conexion.connect();
+		ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
+		Categoria categoria;
+		if( con != null){
+			try {
+				PreparedStatement ps = con.prepareCall(sql);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					categoria = new Categoria();
+					categoria.setCodCategoria(rs.getInt(1));
+					categoria.setNombreCategoria(rs.getString(2));
+					listaCategorias.add(categoria);	
+				}
+		
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		return listaCategorias;
+	}
+	
+
+}

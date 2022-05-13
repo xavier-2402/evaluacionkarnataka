@@ -1,0 +1,48 @@
+package karnataka.entidades;
+
+public class Reporte {
+
+	private int codEmpresa;
+	private String nombreEmpresa;
+	private int totalCompletas;
+	private int totalIncompletas;
+
+	public int getCodEmpresa() {
+		return codEmpresa;
+	}
+
+	public void setCodEmpresa(int codEmpresa) {
+		this.codEmpresa = codEmpresa;
+	}
+
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
+	}
+
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+	}
+
+	public int getTotalCompletas() {
+		return totalCompletas;
+	}
+
+	public void setTotalCompletas(int totalCompletas) {
+		this.totalCompletas = totalCompletas;
+	}
+
+	public int getTotalIncompletas() {
+		return totalIncompletas;
+	}
+
+	public void setTotalIncompletas(int totalIncompletas) {
+		this.totalIncompletas = totalIncompletas;
+	}
+
+	@Override
+	public String toString() {
+		return "Reporte [codEmpresa=" + codEmpresa + ", nombreEmpresa=" + nombreEmpresa + ", totalCompletas="
+				+ totalCompletas + ", totalIncompletas=" + totalIncompletas + "]";
+	}
+
+}

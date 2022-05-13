@@ -1,0 +1,19 @@
+package rest.test;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import rest.db.Conexion;
+import rest.entidades.Vista;
+import rest.service.EvaluacionService;
+
+public class Busqueda {
+   public static void main(String[] args) {
+    EvaluacionService serv = new EvaluacionService();
+     ArrayList<Vista> lista = new ArrayList<Vista>();
+     lista = buscarPorEmpresa(207);
+   }
+}

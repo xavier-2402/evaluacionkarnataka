@@ -1,0 +1,47 @@
+package karnataka.servicio;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import karnataka.db.Conexion;
+import karnataka.entidades.Reporte;
+
+public class ReporteService {
+
+	public static Reporte obtenerReportes(int codEmpresa, int codSubCategoria, String anio, int mes) {
+		Connection con = Conexion.connect();
+		Reporte reporte = new Reporte();
+		;
+		String sql = " SELECT CON_COD_EMPRESA, CON_NOM_EMPRESA,"
+				+ "SUM(CASE WHEN a.VEN_COD_EST_COMPLETO = 0 THEN a.VEN_CANTIDAD_SUGERIDA ELSE 0 END ) AS con_total_completas,"
+				+ "SUM(CASE WHEN a.VEN_COD_EST_COMPLETO = 1 then a.VEN_CANTIDAD_SUGERIDA ELSE 0 end) AS con_total_incompletas"
+				+ "FROM REP_VENTA_DETAL_COL_PRUE_VW a "
+				+ "WHERE CON_COD_EMPRESA = ?"
+				+ "AND CON_COD_SUB_CATEGORIA_VEHICULO = ?"
+				+ "AND CON_PERIODO = ? " 
+				+ "AND CON_MES = ?"
+				+ "GROUP BY CON_COD_EMPRESA, CON_NOM_EMPRESA ";
+		if (con != null) {
+			try {
+				PreparedStatement ps = con.prepareCall(sql);
+				ps.setInt(1, codEmpresa);
+				ps.setInt(2, codSubCategoria);
+				ps.setString(3, anio);
+				ps.setInt(4, mes);
+				ResultSet rs = ps.executeQuery();
+				while (rs.next()) {
+					reporte.setCodEmpresa(rs.getInt(1));
+					reporte.setNombreEmpresa(rs.getString(2));
+					reporte.setTotalCompletas(rs.getInt(3));
+					reporte.setTotalIncompletas(rs.getInt(4));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return reporte;
+	}
+
+}

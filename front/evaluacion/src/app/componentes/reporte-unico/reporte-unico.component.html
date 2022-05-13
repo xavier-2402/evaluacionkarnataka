@@ -1,0 +1,63 @@
+<div class="seleccion-reporte">
+    <form [formGroup]="form">
+        <select class="categoria" formControlName="categoria">
+            <option selected>Seleccione una categoria</option>
+            <option *ngFor = "let categoria of categorias"value="{{categoria.codCategoria}}">{{categoria.nombreCategoria}}</option>
+        </select>
+        <select class="anio" formControlName="anio" >
+            <option *ngFor = "let anio of anios"value="{{anio.anio}}">{{anio.anio}}</option>
+        </select>
+        <select class="mes" formControlName="mes" (change)="obtenerEmpresas($event)">
+            <option value="1" selected>Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+          
+        </select>
+    </form>
+</div>
+<div class="seleccion-empresa">
+    <form >
+        <select class="empresa" >
+            <option selected>Seleccione una empresa</option>
+            <option *ngFor = "let empresa of empresas"value="{{empresa.codEmpresa}}">{{empresa.nombreEmpresa}}</option>
+        </select>
+
+    </form>
+</div>
+
+<div class="reporte-tabla">
+    <table>
+        <thead>
+            <tr>
+                <th>Empresa</th>
+                <th>Completas</th>
+                <th>Incompletas</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{reporte.nombreEmpresa}}</td>
+                <td>{{reporte.totalCompletas}}</td>
+                <td>{{reporte.totalIncompletas}}</td>
+                <td>{{reporte.totalCompletas + reporte.totalIncompletas}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+    
+</div>
+
+<div class = "grafica-barras">
+    <canvas id="graficaBarras"></canvas>
+
+</div>

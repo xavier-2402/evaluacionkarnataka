@@ -1,0 +1,46 @@
+package karnataka.servicio;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import karnataka.db.Conexion;
+import karnataka.entidades.Empresa;
+
+public class EmpresaService {
+	
+	public static ArrayList<Empresa> obtenerEmpresas(){
+		String sql = "SELECT DISTINCT CON_COD_EMPRESA, CON_NOM_EMPRESA  FROM REP_VENTA_DETAL_COL_PRUE_VW ORDER BY CON_NOM_EMPRESA ";
+		Connection con = Conexion.connect();
+		ArrayList<Empresa> listaEmpresas = new ArrayList<Empresa>();
+		Empresa empresa;
+		if(con != null){
+			
+			try {
+				PreparedStatement ps = con.prepareCall(sql);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					empresa = new Empresa();
+					empresa.setCodEmpresa(rs.getInt(1));
+					empresa.setNombreEmpresa(rs.getString(2));
+					listaEmpresas.add(empresa);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		return listaEmpresas;
+	}
+
+}

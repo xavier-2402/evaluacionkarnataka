@@ -1,0 +1,47 @@
+package karnataka.servicio;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import karnataka.db.Conexion;
+import karnataka.entidades.Anio;
+
+public class AnioService {
+	public static ArrayList<Anio> obtenerAnios(){
+		String sql = "SELECT DISTINCT CON_PERIODO FROM REP_VENTA_DETAL_COL_PRUE_VW ORDER BY CON_PERIODO";
+		int contadorId= 1;
+		Connection con = Conexion.connect();
+		Anio anio;
+		ArrayList<Anio> anios = new ArrayList<Anio>();
+		if(con != null){
+			try {
+				PreparedStatement ps = con.prepareCall(sql);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+				anio = new Anio();
+				anio.setId(contadorId);
+				anio.setAnio(rs.getInt(1));
+				anios.add(anio);
+				contadorId++;
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return anios;
+	}
+
+}

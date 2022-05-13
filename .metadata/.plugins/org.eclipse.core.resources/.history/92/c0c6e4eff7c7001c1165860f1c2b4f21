@@ -1,0 +1,38 @@
+package rest.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import rest.db.Conexion;
+import rest.entidades.Vista;
+
+public class EvaluacionService {
+	
+	public Vista buscarPorEmpresa(int codEmpresa){
+		String sql = "SELECT * FROM REP_VENTA_DETAL_COL_PRUE_VW rvdcpv WHERE CON_COD_PRODUCTO = "+ codEmpresa;
+		Connection con = Conexion.connect();
+		if( con != null){
+	        try {
+	            PreparedStatement st = con.prepareCall(sql);
+	            ResultSet rs = st.executeQuery();
+	            Vista vista = new Vista();
+	            while( rs.next()){
+	              vista.setCodigo(rs.getInt(1));
+	              vista.setAnio(rs.getInt(2));
+	              vista.setMes(rs.getInt(3));
+	              vista.setDia(rs.getInt(4));
+	              vista.setCod_empresa(rs.getInt(8));
+	              vista.setNombre_empresa(rs.getString(9));
+	            }
+	            System.out.println(vista.getNombre_empresa());
+	        } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	    }
+		return vista;
+	}
+
+}
