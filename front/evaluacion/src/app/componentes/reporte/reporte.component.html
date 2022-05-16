@@ -1,91 +1,9 @@
-<!--
 <div>
-    <form>
-        <div id = "categorias">
-            <h4>Tipo Vehículo</h4>
-            <div *ngFor=" let categoria of categorias">
-                <input type="checkbox" id="{{categoria.codCategoria}}" name="categoria" value="{{categoria.codCategoria}}" formControlName="categoria">
-                <label for="{{categoria.codCategoria}}">{{categoria.nombreCategoria}}</label>
-            </div>
-        </div>
-        
-        <div id = "empresas">
-            <h4>Empresa</h4>
-            <div *ngFor=" let empresa of empresas">
-                <input type="checkbox" id="{{empresa.codEmpresa" name="empresa" value="{{empresa.codEmpresa}}" >
-                <label  for="{{empresa.codEmpresa}}">{{empresa.nombreEmpresa}}</label>
-            </div>
-        </div>
-        
-        <div id = "anios">
-            <h4>Año</h4>
-            <div *ngFor=" let anio of anios">
-                <input type="checkbox" id="{{anio.anio" name="anio" value="{{anio.anio}}" >
-                <label  for="{{anio.anio}}">{{anio.anio}}</label>
-            </div>
-        </div>
-        
-        <div id = "meses">
-            <h4>Mes</h4>
-            <div >
-                <input type="checkbox" id=" enero" name="meses" value="1">
-                <label for="enero">enero</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" febrero" name="meses" value="2">
-                <label for="febrero">febrero</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" marzo" name="meses" value="3">
-                <label for="marzo">marzo</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" abril" name="meses" value="4">
-                <label for="abril">abril</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" mayo" name="meses" value="5">
-                <label for="mayo">mayo</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" junio" name="meses" value="6">
-                <label for="junio">junio</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" julio" name="meses" value="7">
-                <label for="julio">julio</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" agosto" name="meses" value="8">
-                <label for="agosto">agosto</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" septiembre" name="meses" value="9">
-                <label for="septiembre">septiembre</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" octubre" name="meses" value="10">
-                <label for="octubre">octubre</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" noviembre" name="interest" value="11">
-                <label for="noviembre">noviembre</label>
-            </div>
-            <div >
-                <input type="checkbox" id=" diciembre" name="meses" value="12">
-                <label for="diciembre">diciembre</label>
-            </div>
-        </div>
-    </form>
-</div>
--->
-
-<div>
-    <form [formGroup]="form" >
-        <input type = " text" id = "nombre" formControlName="categoria">
-        <select id="opciones" formControlName="opcion" (change)="obtenerDatos($event)">
-            <option value="1">uno</option>
-            <option value="2">dos</option>
-        </select>
+    <h1>formulario </h1>
+    <form [formGroup]="form">
+        <label for="categoria">Categoria </label>
+        <input type = "text" class="categoria" id = categoria formControlName="categoria">
+        <label for="telefono">Telefono</label>
+        <input tye = text class="telefono" id="telefono" formControlName="telefono">
     </form>
 </div>
